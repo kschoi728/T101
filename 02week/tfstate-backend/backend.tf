@@ -2,7 +2,7 @@ provider "aws" {
   region = "ap-northeast-2"
 }
 
-resource "aws_s3_bucket" "sssoon_s3bucket" {
+resource "aws_s3_bucket" "ssoon_s3bucket" {
   bucket = "ssoon-t101study-tfstate"
 
   # 리소스 삭제 시 테라폼 오류와 함께 종료됨
@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "sssoon_s3bucket" {
 }
 
 # S3 버킷에서 버전 관리를 제어하기 위한 리소스를 제공합니다.
-resource "aws_s3_bucket_versioning" "sssoon_s3bucket_versioning" {
+resource "aws_s3_bucket_versioning" "ssoon_s3bucket_versioning" {
   bucket = aws_s3_bucket.ssoon_s3bucket.id
   # 버킷이 파일을 업데이트 마다 새버전을 생성합니다.
   versioning_configuration {
@@ -41,7 +41,7 @@ resource "aws_s3_bucket_public_access_block" "ssoon_s3bucket_public_access" {
 }
 
 # DynamoDB 테이블 리소스를 제공합니다
-resource "aws_dynamodb_table" "sssoon_dynamodbtable" {
+resource "aws_dynamodb_table" "ssoon_dynamodbtable" {
   name         = "terraform-locks"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
@@ -71,6 +71,6 @@ output "s3_bucket_arn" {
 }
 
 output "dynamodb_table_name" {
-  value       = aws_dynamodb_table.sssoon_dynamodbtable.name
+  value       = aws_dynamodb_table.ssoon_dynamodbtable.name
   description = "The name of the DynamoDB table"
 }
