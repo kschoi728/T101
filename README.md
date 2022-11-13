@@ -6,3 +6,9 @@
 #### [T101-3주차] 03 테라폼 상태 관리하기 - (4) 상태파일격리 - workspaces 을 통한 격리 (https://kschoi728.tistory.com/31)
 #### [T101-3주차] 03 테라폼 상태 관리하기 - (4) 상태파일격리 - 파일 레이아웃을 이용한 격리 (https://kschoi728.tistory.com/32)
 #### [T101-3주차] 03 테라폼 상태 관리하기 - (5) terraform_remote_state 데이터 소스 (https://kschoi728.tistory.com/33)
+### 04 Week
+#### [T101-4주차] 04 테라폼 모듈로 재사용 가능한 인프라 생성하기 - (1) 모듈의 기본 (https://kschoi728.tistory.com/34)
+#### [T101-4주차] 04 테라폼 모듈로 재사용 가능한 인프라 생성하기 - (2) 모듈 입력 (https://kschoi728.tistory.com/35)
+#### [T101-4주차] 04 테라폼 모듈로 재사용 가능한 인프라 생성하기 - (3) 모듈과 지역변수 (https://kschoi728.tistory.com/36)
+#### [T101-4주차] 04 테라폼 모듈로 재사용 가능한 인프라 생성하기 - (4) 모듈 출력 (https://kschoi728.tistory.com/37)
+#### [T101-4주차] 04 테라폼 모듈로 재사용 가능한 인프라 생성하기 - (5) 모듈주의사항 (https://kschoi728.tistory.com/38)
