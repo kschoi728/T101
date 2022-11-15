@@ -13,4 +13,5 @@
 #### [T101-4주차] 04 테라폼 모듈로 재사용 가능한 인프라 생성하기 - (4) 모듈 출력 (https://kschoi728.tistory.com/37)
 #### [T101-4주차] 04 테라폼 모듈로 재사용 가능한 인프라 생성하기 - (5) 모듈주의사항 (https://kschoi728.tistory.com/38)
 ### 05 Week
-#### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 (https://kschoi728.tistory.com/40)
+#### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - count (https://kschoi728.tistory.com/40)
+#### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - for_each (https://kschoi728.tistory.com/41)
