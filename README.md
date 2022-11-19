@@ -15,3 +15,6 @@
 ### 05 Week
 #### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - count (https://kschoi728.tistory.com/40)
 #### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - for_each (https://kschoi728.tistory.com/41)
+#### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - for expressions (https://kschoi728.tistory.com/42)
+#### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - String Directive (https://kschoi728.tistory.com/43)
+#### [5주차] 05 테라폼의 팁과 요령 (2) 조건문 - count (https://kschoi728.tistory.com/44)
