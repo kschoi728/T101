@@ -101,7 +101,14 @@ resource "aws_security_group_rule" "ssoon_sginbound" {
   cidr_blocks       = local.all_ips
   security_group_id = aws_security_group.ssoon_sg.id
 }
-
+resource "aws_security_group_rule" "ssoon_ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = local.tcp_protocol
+  cidr_blocks       = local.all_ips
+  security_group_id = aws_security_group.ssoon_sg.id
+}
 resource "aws_security_group_rule" "ssoon_sgoutbound" {
   type              = "egress"
   from_port         = local.any_port
@@ -135,9 +142,10 @@ resource "aws_launch_configuration" "ssoon_lauchconfig" {
   instance_type               = var.instance_type
   security_groups             = [aws_security_group.ssoon_sg.id]
   associate_public_ip_address = true
+  key_name                    = "new-key"
 
   user_data = templatefile("${path.module}/user-data.sh", {
-    server_port = "local.http_port"
+    server_port = local.http_port
   })
 
   lifecycle {
@@ -233,4 +241,68 @@ resource "aws_lb_listener_rule" "ssoon_albrule" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ssoon_albtg.arn
   }
+}
+
+#! # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#! Autoscaling Schedule 설정
+#! # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+resource "aws_autoscaling_schedule" "scale_out_during_business_hours" {
+  count = var.enable_autoscaling ? 1 : 0
+
+  scheduled_action_name  = "${var.cluster_name}-scale-out-during-business-hours"
+  min_size               = 2
+  max_size               = 4
+  desired_capacity       = 4
+  recurrence             = "0 9 * * *"
+  autoscaling_group_name = aws_autoscaling_group.ssoon_asg.name
+}
+
+resource "aws_autoscaling_schedule" "scale_in_at_night" {
+  count = var.enable_autoscaling ? 1 : 0
+
+  scheduled_action_name  = "${var.cluster_name}-scale-in-at-night"
+  min_size               = 2
+  max_size               = 2
+  desired_capacity       = 2
+  recurrence             = "0 17 * * *"
+  autoscaling_group_name = aws_autoscaling_group.ssoon_asg.name
+}
+
+#! # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#! CloudwWtch Metric Alarm 설정
+#! # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+resource "aws_cloudwatch_metric_alarm" "high_cpu_utilization" {
+  alarm_name  = "${var.cluster_name}-high-cpu-utilization"
+  namespace   = "AWS/EC2"
+  metric_name = "CPUUtilization"
+
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.ssoon_asg.name
+  }
+
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  period              = 300
+  statistic           = "Average"
+  threshold           = 90
+  unit                = "Percent"
+}
+
+resource "aws_cloudwatch_metric_alarm" "low_cpu_credit_balance" {
+  count = format("%.1s", var.instance_type) == "t" ? 1 : 0
+
+  alarm_name  = "${var.cluster_name}-low-cpu-credit-balance"
+  namespace   = "AWS/EC2"
+  metric_name = "CPUCreditBalance"
+
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.ssoon_asg.name
+  }
+
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = 1
+  period              = 300
+  statistic           = "Minimum"
+  threshold           = 10
+  unit                = "Count"
 }
