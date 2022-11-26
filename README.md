@@ -18,3 +18,6 @@
 #### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - for expressions (https://kschoi728.tistory.com/42)
 #### [5주차] 05 테라폼의 팁과 요령 (1) 반복문 - String Directive (https://kschoi728.tistory.com/43)
 #### [5주차] 05 테라폼의 팁과 요령 (2) 조건문 - count (https://kschoi728.tistory.com/44)
+### 06 Week
+#### [6주차] 06 Terraform으로 Secret 관리 - Basic/Tools (https://kschoi728.tistory.com/46)
+#### [6주차] 06 Terraform으로 Secret 관리 - Terraform과 함께 Secret 관리 도구 사용 (https://kschoi728.tistory.com/47)
