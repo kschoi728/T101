@@ -21,3 +21,4 @@
 ### 06 Week
 #### [6주차] 06 Terraform으로 Secret 관리 - Basic/Tools (https://kschoi728.tistory.com/46)
 #### [6주차] 06 Terraform으로 Secret 관리 - Terraform과 함께 Secret 관리 도구 사용 (https://kschoi728.tistory.com/47)
+#### [6주차] [6주차] 06 Terraform으로 Secret 관리 - Resources & Data Sources (https://kschoi728.tistory.com/48)
